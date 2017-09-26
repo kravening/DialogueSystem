@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using System.IO;
 
 namespace DialogueTree
 {
@@ -41,6 +42,16 @@ namespace DialogueTree
         public Dialogue()
         {
             nodes = new List<DialogueNode>();
+        }
+
+        public static Dialogue LoadDialogue(string path)
+        {
+            XmlSerializer serz = new XmlSerializer(typeof(Dialogue));
+            StreamReader reader = new StreamReader(path);
+
+            Dialogue dia = (Dialogue)serz.Deserialize(reader);
+
+            return dia;
         }
     }
 }

@@ -13,8 +13,8 @@ namespace DialogueTree
 
         public DialogueOption(string incomingText, int dest)
         {
-            text = incomingText;
-            destinationNodeID = dest;
+            this.text = incomingText;
+            this.destinationNodeID = dest;
         }
 
     }

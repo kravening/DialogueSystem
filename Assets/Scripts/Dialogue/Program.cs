@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace DialogueTree
 {
@@ -49,7 +50,21 @@ namespace DialogueTree
             dia.AddOption("Right?, actually interesting fact. it used to be customary for the bartender to punch you in the gut while you down it, but after a certain accident we stopped doing it.", node3, null);
             dia.AddOption("oops", node4, null);
 
+            XmlSerializer serz = new XmlSerializer(typeof(Dialogue));
+            StreamWriter writer = new StreamWriter("test_dia.xml");
 
+            serz.Serialize(writer, dia);
+            writer.Close();
+        }
+
+        private static Dialogue loadDialogue(string path)
+        {
+            XmlSerializer serz = new XmlSerializer(typeof(Dialogue));
+            StreamReader reader= new StreamReader(path);
+
+            Dialogue dia = (Dialogue)serz.Deserialize(reader);
+
+            return dia;
         }
     }
 }

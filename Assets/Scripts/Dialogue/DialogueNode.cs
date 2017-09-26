@@ -7,7 +7,9 @@ namespace DialogueTree
     public class DialogueNode
     {
         public int nodeID = -1;
+
         public string text;
+
         public List<DialogueOption> options;
 
         //parameterless constructor for serialization.
